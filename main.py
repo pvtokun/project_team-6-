@@ -1,6 +1,4 @@
-from functions.add_functions import add_user, add_birthday
-from functions.utility_func import hello_user, unknown_command, goodbye, save, load, upcoming_birthday, show_phone, search_contact_book, paginate, save, load
-from functions.edit_functions import change_phone, remove_phone
+from utility_func import hello_user, add_user, add_birthday, change_phone, remove_phone, show_phone, unknown_command, goodbye, paginate, search_contact_book, save, load, upcoming_birthday
 
 HANDLERS = {
     'hello': hello_user,

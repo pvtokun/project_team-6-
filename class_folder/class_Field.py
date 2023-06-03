@@ -1,5 +1,5 @@
-from datetime import datetime
 from re import match
+from datetime import datetime
 
 class Field:
     def __init__(self, value) -> None:
@@ -19,8 +19,11 @@ class Field:
 
 
 class Name(Field):
-    pass
+    def __init__(self, value) -> None:
+        super().__init__(value)
 
+    def __repr__(self) -> str:
+        return f"{self.value}"
 
 class Phone(Field):
     def __init__(self, value) -> None:
@@ -37,7 +40,6 @@ class Phone(Field):
     def __repr__(self) -> str:
         return f"{self.value}"
 
-
 class Birthday(Field):
     def __init__(self, value) -> None:
         super().__init__(value)
@@ -49,6 +51,3 @@ class Birthday(Field):
             datetime.strptime(new_value, '%d-%m-%Y')
         except ValueError:
             raise ValueError
-        
-class Email(Field):
-    pass
