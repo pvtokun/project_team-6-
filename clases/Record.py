@@ -1,5 +1,5 @@
 from datetime import datetime
-from clases.Field import Name, Phone, Birthday, Email
+from Field import Name, Phone, Birthday, Email
 
 
 class Record:
