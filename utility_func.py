@@ -79,6 +79,7 @@ def remove_phone(name, phone):
     result = record.remove_phone(phone)
     return f'For {name} {result}'
 
+@input_error
 def show_phone(name):
     if name == 'all':
         return show_all()
