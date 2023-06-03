@@ -1,16 +1,21 @@
 from datetime import datetime
-from class_folder.class_Field import Name, Phone, Birthday
+from class_folder.class_Field import Name, Phone, Birthday, Email
 
 class Record:
-    def __init__(self, name: Name, phone: Phone=None, birthday: Birthday=None) -> None:
+    def __init__(self, name: Name, phone: Phone=None, birthday: Birthday=None, email: Email=None) -> None:
         self.name = name
         self.phones = []
         self.birthday = None
+        self.email = None
+
         if phone is not None:
             self.add_phone(phone)
 
         if birthday is not None:
             self.set_birthday(birthday)
+        
+        if email is not None:
+            self.set_email(email)
 
     def set_birthday(self, birthday: Birthday):
         self.birthday = birthday.value
@@ -18,8 +23,24 @@ class Record:
     def remove_birthday(self):
         self.birthday = None
 
-    def is_leap_year(year):
+    def set_email(self, email: Email):
+        self.email = email.value
+    
+    def change_email(self, old_email, new_email):
+        if old_email.value == old_email:
+            old_email.value = new_email
+            return f'{old_email} has been changed to a new one: {new_email}'
+        else:
+            return f'Phone {old_email} not found'
+        
+    def show_email(self):
+        return f'{self.email}'
+
+    def remove_email(self):
+        self.email - None
+
     # Перевіряємо, чи рік є високосним
+    def is_leap_year(year):
         if year % 4 == 0:
             if year % 100 == 0:
                 if year % 400 == 0:
@@ -50,6 +71,8 @@ class Record:
         
         return days_to_birthday
     
+
+    # фукнціїнал отримання списку контактів у яких день народження через N кільксть днів 
     def get_upcoming_birthday(self, days):
         current_date = datetime.now().date()
 

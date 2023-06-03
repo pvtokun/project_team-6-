@@ -1,4 +1,4 @@
-from utility_func import hello_user, add_user, add_birthday, change_phone, remove_phone, show_phone, unknown_command, goodbye, paginate, search_contact_book, save, load, upcoming_birthday
+from utility_func import hello_user, add_user, add_birthday, change_phone, remove_phone, show_phone, unknown_command, goodbye, paginate, search_contact_book, save, load, upcoming_birthday, add_email
 
 HANDLERS = {
     'hello': hello_user,
@@ -13,7 +13,8 @@ HANDLERS = {
     'exit': goodbye,
     'close': goodbye,
     'paginate': paginate,
-    'upcoming': upcoming_birthday
+    'upcoming': upcoming_birthday,
+    'email': add_email
 }
 
 def main():

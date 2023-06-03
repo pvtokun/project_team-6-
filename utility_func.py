@@ -1,5 +1,6 @@
 import pickle
-from class_folder.class_Record import Name, Phone, Record, Birthday
+from class_folder.class_Record import Record
+from class_folder.class_Field import Name, Phone, Birthday, Email
 from class_folder.class_Address_Book import AddressBook
 
 CONTACTS = AddressBook()
@@ -19,18 +20,6 @@ def input_error(func):
             return 'Missed arguments'
     return inner
 
-def hello_user():
-    print('How can I help you?')
-    return 
-
-@input_error
-def unknown_command(command):
-    return f'Unknown command: {command}'
-
-def goodbye():
-    print('Good bye!')
-    return
-
 @input_error
 def add_user(name: str, phone: str = None) -> str:
     name_rec = Name(name)
@@ -44,25 +33,13 @@ def add_user(name: str, phone: str = None) -> str:
     CONTACTS.add_record(record)
     return result
 
+
+
 def add_phone(name: str, phone: str) -> str:
     record = CONTACTS.get_records(name)
     record.add_phone(phone)
     CONTACTS.add_record(record)
     return f'For user {name} is added a new phone {phone}!'
-
-@input_error
-def add_birthday(name: str, birthday: Birthday) -> str:
-    record = CONTACTS.data.get(name)
-    if not record:
-        return "Contact not found"
-    try: 
-        bd_date_str = Birthday(birthday)
-        bd_date_str.value = birthday
-        record.set_birthday(bd_date_str)
-        CONTACTS.add_record(record)
-        return f"Added birthday: {bd_date_str.value}"
-    except ValueError:
-        return f"Invalid date format. Please use the format: DD-MM-YYYY. Birthday: {bd_date_str.value}"
 
 @input_error
 def change_phone(name, old_phone, new_phone):
@@ -79,6 +56,49 @@ def remove_phone(name, phone):
     result = record.remove_phone(phone)
     return f'For {name} {result}'
 
+
+@input_error
+def add_birthday(name: str, birthday: Birthday) -> str:
+    record = CONTACTS.data.get(name)
+    if not record:
+        return "Contact not found"
+    try: 
+        bd_date_str = Birthday(birthday)
+        bd_date_str.value = birthday
+        record.set_birthday(bd_date_str)
+        CONTACTS.add_record(record)
+        return f"Added birthday: {bd_date_str.value}"
+    except ValueError:
+        return f"Invalid date format. Please use the format: DD-MM-YYYY. Birthday: {bd_date_str.value}"
+
+def days_to_birthday(name: str):
+    record = CONTACTS.data.get(name)
+    result = record.days_to_birthday()
+    return result
+
+def upcoming_birthday(days) -> str:
+    
+    record = CONTACTS.data
+    result = ''
+    for name, record in record.items():
+        result += f'{name}: {record.get_upcoming_birthday(int(days))}' 
+    return result
+
+
+def add_email(name: str, email: Email) -> str:
+    record = CONTACTS.data.get(name)
+    if not record:
+        return "Contact not found"
+    try:
+        email_rec = Email(email)
+        email_rec.value = email
+        record.set_email(email_rec)
+        CONTACTS.add_record(record)
+        return f'{email_rec.value} is added!'
+    except ValueError:
+        return f'Invalid email, try again! Email domain must be on of: gmail.com, yahoo.com, outlook.com, hotmail.com, icloud.com, aol.com, yandex.com, zoho.com, protonmail.com, mail.com, gmx.com'
+
+
 @input_error
 def show_phone(name):
     if name == 'all':
@@ -88,7 +108,7 @@ def show_phone(name):
         record = CONTACTS.data.get(name)
         birthday = record.show_birthday()
         if record:
-            result = f'{name} phone number is: {record.show_phone()}, {birthday} , next birthday in: {days_to_birthday(name)} days'
+            result = f'{name} phone number is: {record.show_phone()}, {birthday} , next birthday in: {days_to_birthday(name)} days, email: {record.show_email()}'
         else:
             result = f'We dont have {name} in our list'
     return result
@@ -98,32 +118,9 @@ def show_all():
     if not record:
         return "No contacts found" 
     result = ''
-    for name, phone in record.items():
-        birthday = phone.show_birthday()
-        result += f'{name} phone number is: {phone.show_phone()}, {birthday}, next birthday in: {days_to_birthday(name)} days\n'
-    return result
-
-def days_to_birthday(name: str):
-    record = CONTACTS.data.get(name)
-    result = record.days_to_birthday()
-    return result
-
-def upcoming_birthday(days):
-    
-    record = CONTACTS.data
-    result = ''
     for name, record in record.items():
-        result += f'{name}: {record.get_upcoming_birthday(int(days))}' 
-    return result
-
-@input_error
-def paginate(page_size: int) -> str:
-    result = ''
-    page_size_int = int(page_size)
-    for page in CONTACTS.paginate(page_size_int):
-        for name, record in page:
-            result += f"{name}: {record.show_phone()}, {record.show_birthday()}\n"
-        result += "---\n" 
+        birthday = record.show_birthday()
+        result += f'{name} phone number is: {record.show_phone()}, {birthday}, next birthday in: {days_to_birthday(name)} days, email: {record.show_email()}\n'
     return result
 
 def search_contact_book(query: str) -> str:
@@ -139,6 +136,30 @@ def search_contact_book(query: str) -> str:
             user_info = CONTACTS.data.get(name)
             result += f'User: {name}, {user_info.show_phone()}, {user_info.show_birthday()}\n'
     return result
+
+
+@input_error
+def paginate(page_size: int) -> str:
+    result = ''
+    page_size_int = int(page_size)
+    for page in CONTACTS.paginate(page_size_int):
+        for name, record in page:
+            result += f"{name}: {record.show_phone()}, {record.show_birthday()}\n"
+        result += "---\n" 
+    return result
+
+
+def hello_user():
+    print('How can I help you?')
+    return 
+
+@input_error
+def unknown_command(command):
+    return f'Unknown command: {command}'
+
+def goodbye():
+    print('Good bye!')
+    return
 
 def save():
     with open('Contacts.txt', 'wb') as file:

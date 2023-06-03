@@ -17,7 +17,6 @@ class Field:
     def validator(self, value):
         pass
 
-
 class Name(Field):
     def __init__(self, value) -> None:
         super().__init__(value)
@@ -51,3 +50,37 @@ class Birthday(Field):
             datetime.strptime(new_value, '%d-%m-%Y')
         except ValueError:
             raise ValueError
+
+class Email(Field):
+    # Список допустимих емейл-доменів
+    email_domains = [
+        'gmail.com',
+        'yahoo.com',
+        'outlook.com',
+        'hotmail.com',
+        'icloud.com',
+        'aol.com',
+        'yandex.com',
+        'zoho.com',
+        'protonmail.com',
+        'mail.com',
+        'gmx.com'
+    ]
+
+    def __init__(self, value):
+        super().__init__(value)
+
+    def validator(self, new_value):
+        if isinstance(new_value, str):
+            parts = new_value.split('@')
+
+
+            local_part, domain_part = parts
+
+            if domain_part not in self.email_domains or local_part == '':
+                # Помилка: непідтримуваний домен емейлу
+                raise ValueError("Непідтримуваний домен емейлу")
+        else:
+            # Помилка: значення не є рядком
+            raise ValueError("Значення не є рядком")
+
