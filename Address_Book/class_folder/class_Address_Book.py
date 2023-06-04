@@ -1,5 +1,5 @@
 from collections import UserDict
-from class_folder.class_Record import Record
+from ..class_folder.class_Record import Record
     
 class Iterator:
     def __init__(self, records) -> None:

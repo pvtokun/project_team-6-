@@ -1,5 +1,5 @@
 from datetime import datetime
-from class_folder.class_Field import Name, Phone, Birthday, Email
+from ..class_folder.class_Field import Name, Phone, Birthday, Email
 
 class Record:
     def __init__(self, name: Name, phone: Phone=None, birthday: Birthday=None, email: Email=None) -> None:
