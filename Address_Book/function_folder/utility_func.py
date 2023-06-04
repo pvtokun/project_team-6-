@@ -58,8 +58,6 @@ def remove_phone(name, phone):
     return f'For {name} {result}'  # Повернення повідомлення про успішне видалення телефону
 
 
-
-@input_error
 def add_birthday(name: str, birthday: Birthday) -> str:
     record = CONTACTS.data.get(name)  # Отримання запису користувача з вказаним ім'ям
     if not record:  # Перевірка, чи існує запис користувача
@@ -71,7 +69,7 @@ def add_birthday(name: str, birthday: Birthday) -> str:
         CONTACTS.add_record(record)  # Оновлення запису користувача в контактах
         return f"Added birthday: {bd_date_str.value}"  # Повернення повідомлення про успішне додавання дня народження
     except ValueError:
-        return f"Invalid date format. Please use the format: DD-MM-YYYY. Birthday: {bd_date_str.value}"  # Повернення повідомлення про некоректний формат дати
+        return f"Invalid date format. Please use the format: DD-MM-YYYY."  # Повернення повідомлення про некоректний формат дати
 
 def days_to_birthday(name: str):
     record = CONTACTS.data.get(name)  # Отримання запису користувача з вказаним ім'ям

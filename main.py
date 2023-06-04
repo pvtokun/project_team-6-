@@ -1,6 +1,6 @@
 from Address_Book.function_folder.utility_func import hello_user, add_user, add_birthday, change_phone, remove_phone, show_phone, unknown_command, goodbye, paginate, search_contact_book, save, load, upcoming_birthday, add_email, change_email, remove_email
 
-from Notes_Manager.function_folder.func_Notes import add_note, search_notes, edit_note, remove_notes
+from Notes_Manager.function_folder.func_Notes import add_note, search_notes, edit_note, delete_note
 
 # Словник обробників команд
 HANDLERS = {
@@ -22,7 +22,7 @@ NOTE_HANDLERS = {
     'add': add_note,
     'search': search_notes,
     'edit': edit_note,
-    'remove': remove_notes #TODO треба перевірити на правильність
+    'remove': delete_note 
 }
 
 def main():
