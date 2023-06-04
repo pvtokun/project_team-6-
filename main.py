@@ -2,6 +2,10 @@ from Address_Book.function_folder.utility_func import hello_user, add_user, add_
 
 from Notes_Manager.function_folder.func_Notes import add_note, search_notes, edit_note, delete_note
 
+from File_Sorter.main import sorter
+from pathlib import Path
+import sys
+
 # Словник обробників команд
 HANDLERS = {
     'hello': hello_user,               # Привітання користувача
@@ -107,6 +111,15 @@ def main():
                 else:
                     result = unknown_command(user_input)
                 print(result)
+
+        if main_input == '3':
+            try:
+                folder_for_scan = Path(input('Enter the path: '))
+                sorter(folder_for_scan.resolve())
+                print('Done')
+            except FileNotFoundError:
+                print('File is already sorted')
+
 
 if __name__ == '__main__':
     main()
