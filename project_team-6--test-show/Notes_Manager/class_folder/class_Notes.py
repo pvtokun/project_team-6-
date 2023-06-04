@@ -32,3 +32,19 @@ class NoteBook:
             if tag in note.tags:
                 result.append(note)
         return result
+    
+    def show_notes(self):
+        if self.notes:
+            result = "Notes:\n"
+            for index, note in enumerate(self.notes):
+                result += f"Index: {index}\nTitle: {note.title}\nContent: {note.content}\nTags: {', '.join(note.tags)}\n\n"
+        else:
+            result = "No notes found."
+        return result
+    
+    def delete_note(self, note_index):
+        if note_index < len(self.notes):
+            del self.notes[note_index]
+            return "Note deleted successfully!"
+        else:
+            return "Invalid note index!"
