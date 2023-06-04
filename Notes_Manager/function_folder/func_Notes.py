@@ -46,8 +46,13 @@ def edit_note():
     return result
 
 @input_error
-def delete_note(note_index):
-    pass
+def remove_note():
+    note_index = int(input("Enter the index of the note to delete: "))
+    if note_index < len(notebook.notes):
+        del notebook.notes[note_index]
+        return "Note deleted successfully!"
+    else:
+        return "Invalid note index!"
     
 @input_error
 def show_notes():
