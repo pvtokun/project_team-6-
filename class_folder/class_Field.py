@@ -74,7 +74,6 @@ class Email(Field):
         if isinstance(new_value, str):
             parts = new_value.split('@')
 
-
             local_part, domain_part = parts
 
             if domain_part not in self.email_domains or local_part == '':
