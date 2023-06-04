@@ -1,7 +1,5 @@
 from Address_Book.function_folder.utility_func import hello_user, add_user, add_birthday, change_phone, remove_phone, show_phone, unknown_command, goodbye, paginate, search_contact_book, save, load, upcoming_birthday, add_email, change_email, remove_email
-
-from Notes_Manager.function_folder.func_Notes import add_note, search_notes, edit_note, delete_note, show_notes
-
+from Notes_Manager.function_folder.func_Notes import add_note, search_notes, edit_note, remove_note, show_notes
 from File_Sorter.main import sorter
 from pathlib import Path
 
@@ -18,90 +16,92 @@ HANDLERS = {
     'save': save,                      # Збереження даних
     'load': load,                      # Завантаження даних
     'exit': goodbye,                   # Вихід з програми
-    'close': goodbye                   # Закриття програми
+    'close': goodbye,                   # Закриття програми
+    'help': lambda: "Available commands: add, search, edit, remove, show, help",         #виводить список доступних команд для адресної книги 
 }
 
 NOTE_HANDLERS = {
     'add': add_note,
     'search': search_notes,
     'edit': edit_note,
-    'remove': delete_note,
-    'show': show_notes
+    'remove': remove_note,
+    'show': show_notes,
+    'help': lambda: "Available commands: add, search, edit, remove, show, help"        #виводить список доступних команд для нотатника
 }
 
 def main():
     while True:
         print('Options:\n 1. Contact Book \n 2. Note Manager\n 3. File Sorter')
-        main_input = input('Hello, chose the option: ')
+        main_input = input('Hello, choose the option: ')
         if not main_input:
             continue
 
         if main_input == 'close':
-            print('Good bye')
+            print('Goodbye')
             break
 
         if main_input == '1':
             while True:
-                user_input = input('Please enter command or command and args: ')  # Отримати введену користувачем команду
-                if not user_input:  # Якщо введено порожній рядок, продовжити наступну ітерацію циклу
+                user_input = input('Please enter command or command and args: ')
+                if not user_input:
                     continue
 
-                command, *args = user_input.strip().split(' ', 1)  # Розбити введений рядок на команду та аргументи
+                command, *args = user_input.strip().split(' ', 1)
 
-                if command.lower() == 'hello':  # Обробка команди 'hello'
+                if command.lower() == 'hello':
                     hello_user()
                     continue
-                if command.lower() in ['exit', 'close']:  # Обробка команд 'exit' та 'close'
+                if command.lower() in ['exit', 'close']:
                     goodbye()
                     break
 
-                if command.lower() == 'change':  # Обробка команди 'change'
+                if command.lower() == 'change':
                     print('1. Change phone')
                     print('2. Change email')
                     change_input = input('Please choose the command: ')
-                    if change_input == '1':  # Обробка команди 'change' з варіантом '1' (зміна телефону)
+                    if change_input == '1':
                         command_input = input('Enter the name, old phone, and new phone: ')
                         name, old_phone, new_phone = command_input.strip().split()
                         result = change_phone(name, old_phone, new_phone)
                         print(result)
                         continue
-                    if change_input == '2':  # Обробка команди 'change' з варіантом '2' (зміна електронної пошти)
+                    if change_input == '2':
                         command_input = input('Enter the name, old email, and new email: ')
                         name, old_email, new_email = command_input.strip().split()
                         result = change_email(name, old_email, new_email)
                         print(result)
                         continue
-                
-                if command.lower() == 'remove':  # Обробка команди 'remove'
+
+                if command.lower() == 'remove':
                     print('1. Remove phone')
                     print('2. Remove email')
                     change_input = input('Please choose the command: ')
-                    if change_input == '1':  # Обробка команди 'remove' з варіантом '1' (видалення телефону)
+                    if change_input == '1':
                         command_input = input('Enter the name and phone: ')
                         name, phone = command_input.strip().split()
                         result = remove_phone(name, phone)
                         print(result)
                         continue
-                    if change_input == '2':  # Обробка команди 'remove' з варіантом '2' (видалення електронної пошти)
+                    if change_input == '2':
                         command_input = input('Enter the name and email: ')
                         name, email = command_input.strip().split()
                         result = remove_email(name, email)
                         print(result)
                         continue
 
-                handler = HANDLERS.get(command.lower())  # Отримати відповідний обробник команди зі словника HANDLERS
+                handler = HANDLERS.get(command.lower())
                 if args:
-                    args = args[0].split(' ')  # Розбити аргументи на окремі частини
-                if handler:  # Якщо знайдено обробник для команди
-                    result = handler(*args)  # Викликати відповідний обробник з аргументами
-                else:  # Якщо команда не знайдена
-                    result = unknown_command(command)  # Викликати функцію для обробки невідомої команди
-                print(result)  # Вивести результат
+                    args = args[0].split(' ')
+                if handler:
+                    result = handler(*args)
+                else:
+                    result = unknown_command(command)
+                print(result)
 
         if main_input == '2':
             while True:
                 user_input = input('Please enter command: ')
-                if user_input in ['exit', 'close']:  # Обробка команд 'exit' та 'close'
+                if user_input in ['exit', 'close']:
                     goodbye()
                     break
 
