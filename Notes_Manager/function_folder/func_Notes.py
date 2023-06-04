@@ -46,9 +46,16 @@ def edit_note():
     return result
 
 @input_error
-def delete_note(self, note_index):
-    if note_index < len(self.notes):
-        del self.notes[note_index]
-        return "Note deleted successfully!"
+def delete_note(note_index):
+    pass
+    
+@input_error
+def show_notes():
+    notes = notebook.get_all_notes()
+    if notes:
+        result = "Notes:\n"
+        for note in notes:
+            result += f"Title: {note.title}\nContent: {note.content}\nTags: {', '.join(note.tags)}\n\n"
     else:
-        return "Invalid note index!"
+        result = "No notes found."
+    return result
