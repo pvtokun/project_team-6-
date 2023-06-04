@@ -61,5 +61,18 @@ def search_notes():
 
 def edit_note():
     note_index = int(input("Enter the index of the note to edit: "))
-    result = notebook.edit_note(note_index)
+    action = input("Enter 'e' to edit the note or 'd' to delete the note: ")
+    if action.lower() == 'e':
+        result = notebook.edit_note(note_index)
+    elif action.lower() == 'd':
+        result = notebook.delete_note(note_index)
+    else:
+        result = "Invalid action!"
     return result
+
+    def delete_note(self, note_index):
+        if note_index < len(self.notes):
+            del self.notes[note_index]
+            return "Note deleted successfully!"
+        else:
+            return "Invalid note index!"
