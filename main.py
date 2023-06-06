@@ -103,7 +103,7 @@ def main():
 
         if main_input == '2':
             while True:
-                user_input = input('Please enter command: ')
+                user_input = input('Please enter command: ').lstrip(' ')
                 if user_input in ['exit', 'close']:
                     goodbye()
                     break
