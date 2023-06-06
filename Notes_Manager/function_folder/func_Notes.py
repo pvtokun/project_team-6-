@@ -47,7 +47,7 @@ def edit_note():
 
 @input_error
 def remove_note():
-    command_input = input("Enter the command to delete a note (tag or index (first note have index 0)): ")
+    command_input = input("Remove by tag(all) or remove by index(single one): ")
     command_parts = command_input.strip().split()
 
     if len(command_parts) != 1:
@@ -55,7 +55,7 @@ def remove_note():
 
     command = command_parts[0]
     if command.isdigit():
-        return remove_note_by_index(int(command))
+        return remove_note_by_index(int(command) - 1)
     else:
         return remove_note_by_tag(command)
 

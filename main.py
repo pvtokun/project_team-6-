@@ -36,7 +36,7 @@ def main():
         if not main_input:
             continue
 
-        if main_input == ['close', 'exit']:
+        if main_input in ['close', 'exit']:
             print('Goodbye')
             break
 
