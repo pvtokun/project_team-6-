@@ -33,8 +33,10 @@ def search_notes():
     matching_notes = notebook.search_notes_by_tag(tag)
     if matching_notes:
         result = "Matching notes:\n"
+        index = 0
         for note in matching_notes:
-            result += f"Title: {note.title}\nContent: {note.content}\nTags: {', '.join(note.tags)}\n\n"
+            index += 1
+            result += f"Index of note: {index}\nTitle: {note.title}\nContent: {note.content}\nTags: {', '.join(note.tags)}\n\n"
     else:
         result = "No notes found with the given tag."
     return result
@@ -42,14 +44,14 @@ def search_notes():
 @input_error
 def edit_note():
     note_index = int(input("Enter the index of the note to edit: "))
-    result = notebook.edit_note(note_index)
+    result = notebook.edit_note(note_index - 1)
     return result
 
 @input_error
 def remove_note():
     note_index = int(input("Enter the index of the note to delete: "))
     if note_index < len(notebook.notes):
-        del notebook.notes[note_index]
+        del notebook.notes[note_index - 1]
         return "Note deleted successfully!"
     else:
         return "Invalid note index!"
@@ -59,8 +61,10 @@ def show_notes():
     notes = notebook.get_all_notes()
     if notes:
         result = "Notes:\n"
+        index = 0
         for note in notes:
-            result += f"Title: {note.title}\nContent: {note.content}\nTags: {', '.join(note.tags)}\n\n"
+            index += 1
+            result += f"Index of note: {index}\nTitle: {note.title}\nContent: {note.content}\nTags: {', '.join(note.tags)}\n\n"
     else:
         result = "No notes found."
     return result
