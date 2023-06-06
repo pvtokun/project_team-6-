@@ -1,6 +1,9 @@
 # определим класс Note для заметок
 from ..class_folder.class_Notes import Note, NoteBook
 
+import pickle
+
+
 notebook = NoteBook()
 
 def input_error(func):
@@ -75,7 +78,6 @@ def remove_note_by_index(index):
         return "Invalid note index!"
 
 
-        
 @input_error
 def show_notes():
     notes = notebook.get_all_notes()
@@ -86,3 +88,13 @@ def show_notes():
     else:
         result = "No notes found."
     return result
+
+def save():
+    with open('Notes.txt', 'wb') as file:
+        pickle.dump(notebook.notes, file)  # Збереження списку контактів у файл
+    return 'Contacts list saved!'
+
+def load():
+    with open('Notes.txt', 'rb') as file:
+        notebook.notes = pickle.load(file)  # Завантаження списку контактів з файлу
+    return 'Contacts list loaded!'

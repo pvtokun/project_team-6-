@@ -1,5 +1,5 @@
 from Address_Book.function_folder.utility_func import hello_user, add_user, add_birthday, change_phone, remove_phone, show_phone, unknown_command, goodbye, paginate, search_contact_book, save, load, upcoming_birthday, add_email, change_email, remove_email
-from Notes_Manager.function_folder.func_Notes import add_note, search_notes, edit_note, remove_note, show_notes
+from Notes_Manager.function_folder.func_Notes import add_note, search_notes, edit_note, remove_note, show_notes, save, load
 from File_Sorter.main import sorter
 from pathlib import Path
 
@@ -17,7 +17,7 @@ HANDLERS = {
     'load': load,                      # Завантаження даних
     'exit': goodbye,                   # Вихід з програми
     'close': goodbye,                   # Закриття програми
-    'help': lambda: "Available commands: add, search, edit, remove, show, help",         #виводить список доступних команд для адресної книги 
+    'help': lambda: "Available commands: hello, add(name, phone),birthday(name, birthday),email(name, email), upcoming, find, change, remove, show and show all, save and load, exit and close",         #виводить список доступних команд для адресної книги 
 }
 
 NOTE_HANDLERS = {
@@ -26,8 +26,11 @@ NOTE_HANDLERS = {
     'edit': edit_note,
     'remove': remove_note,
     'show': show_notes,
+    'save': save,
+    'load': load,
     'help': lambda: "Available commands: add, search, edit, remove, show, help"        #виводить список доступних команд для нотатника
 }
+
 
 def main():
     while True:

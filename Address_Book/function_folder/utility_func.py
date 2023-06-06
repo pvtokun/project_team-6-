@@ -1,7 +1,7 @@
-import pickle
 from ..class_folder.class_Record import Record
 from ..class_folder.class_Field import Name, Phone, Birthday, Email
 from ..class_folder.class_Address_Book import AddressBook
+import pickle
 
 CONTACTS = AddressBook()
 
