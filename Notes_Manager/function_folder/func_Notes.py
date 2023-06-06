@@ -1,8 +1,6 @@
 # определим класс Note для заметок
 from ..class_folder.class_Notes import Note, NoteBook
-
 import pickle
-
 
 notebook = NoteBook()
 
@@ -86,13 +84,3 @@ def remove_note_by_tag(tag):
         return f"All notes with the tag '{tag}' deleted successfully!"
     else:
         return f"No notes found with the tag '{tag}'."
-
-def save():
-    with open('Notes.txt', 'wb') as file:
-        pickle.dump(notebook.notes, file)  # Збереження списку контактів у файл
-    return 'Contacts list saved!'
-
-def load():
-    with open('Notes.txt', 'rb') as file:
-        notebook.notes = pickle.load(file)  # Завантаження списку контактів з файлу
-    return 'Contacts list loaded!'

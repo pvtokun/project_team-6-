@@ -180,13 +180,3 @@ def unknown_command(command):
 def goodbye():
     print('Good bye!')
     return
-
-def save():
-    with open('Contacts.txt', 'wb') as file:
-        pickle.dump(CONTACTS.data, file)  # Збереження списку контактів у файл
-    return 'Contacts list saved!'
-
-def load():
-    with open('Contacts.txt', 'rb') as file:
-        CONTACTS.data = pickle.load(file)  # Завантаження списку контактів з файлу
-    return 'Contacts list loaded!'

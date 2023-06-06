@@ -5,13 +5,16 @@ class Note:
         self.tags = tags  # Теги
 
 class NoteBook:
-    index = 0
+    index = 1
     def __init__(self):
         self.notes = []  # Пустий список нотаток
         
 
     def add_note(self, note):
-        NoteBook.index += 1
+        if NoteBook.index <= 1:
+            NoteBook.index = 1
+        else:
+            NoteBook.index += 1
         self.notes.append(note)  # Додавання нотатки до списку
 
 
