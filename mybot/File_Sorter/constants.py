@@ -1,0 +1,59 @@
+JPEG_IMAGES = []
+JPG_IMAGES = []
+PNG_IMAGES = []
+SVG_IMAGES = []
+
+AVI_VIDEO = []
+MP4_VIDEO = []
+MOV_VIDEO = []
+MKV_VIDEO = []
+
+DOC_DOCS = []
+DOCX_DOCS = []
+TXT_DOCS = []
+PDF_DOCS = []
+XLSX_DOCS = []
+PPTX_DOCS = []
+
+MP3_AUDIO = []
+OGG_AUDIO = []
+WAV_AUDIO = []
+AMR_AUDIO = []
+
+ZIP_ARCHIVES = []
+GZ_ARCHIVES = []
+TAR_ARCHIVES = []
+
+MY_OTHER = []
+
+REGISTER_EXTENSION = {
+    'JPEG':JPEG_IMAGES,
+    'JPG':JPG_IMAGES,
+    'PNG':PNG_IMAGES,
+    'SVG':SVG_IMAGES,
+
+    'AVI':AVI_VIDEO,
+    'MP4':MP4_VIDEO,
+    'MOV':MOV_VIDEO,
+    'MKV':MKV_VIDEO,
+
+    'DOC':DOC_DOCS,
+    'DOCX':DOCX_DOCS,
+    'TXT':TXT_DOCS,
+    'PDF':PDF_DOCS,
+    'XLSX':XLSX_DOCS,
+    'PPTX':PPTX_DOCS,
+
+    'MP3':MP3_AUDIO,
+    'OGG':OGG_AUDIO,
+    'WAV':WAV_AUDIO,
+    'AMR':AMR_AUDIO,
+
+    'ZIP':ZIP_ARCHIVES,
+    'GZ':GZ_ARCHIVES,
+    'TAR':TAR_ARCHIVES
+}
+
+FOLDERS = []
+EXTENSION = set()
+UNKNOWN = set()
