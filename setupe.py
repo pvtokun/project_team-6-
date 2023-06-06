@@ -1,4 +1,4 @@
-from setuptools import setup, find_namespace_packages
+from setuptools import setup, find_packages
 
 
 setup(name='Personal helper',
@@ -8,4 +8,4 @@ setup(name='Personal helper',
       author='Назар, Віталій х2, Влад, Віктор',
       author_email='evciu97@gmail.com',
       license='MIT',
-      packages=find_namespace_packages())
+      packages=find_packages())
