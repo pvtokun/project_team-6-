@@ -47,13 +47,35 @@ def edit_note():
 
 @input_error
 def remove_note():
-    note_index = int(input("Enter the index of the note to delete: "))
-    if note_index < len(notebook.notes):
-        del notebook.notes[note_index]
+    command_input = input("Enter the command to delete a note (tag or index (first note have index 0)): ")
+    command_parts = command_input.strip().split()
+
+    if len(command_parts) != 1:
+        return "Invalid command format!"
+
+    command = command_parts[0]
+    if command.isdigit():
+        return remove_note_by_index(int(command))
+    else:
+        return remove_note_by_tag(command)
+
+def remove_note_by_tag(tag):
+    matching_notes = notebook.search_notes_by_tag(tag)
+    if matching_notes:
+        notebook.remove_notes_by_tag(tag)
+        return f"All notes with the tag '{tag}' deleted successfully!"
+    else:
+        return f"No notes found with the tag '{tag}'."
+
+def remove_note_by_index(index):
+    if 0 <= index < len(notebook.notes):
+        del notebook.notes[index]
         return "Note deleted successfully!"
     else:
         return "Invalid note index!"
-    
+
+
+        
 @input_error
 def show_notes():
     notes = notebook.get_all_notes()
