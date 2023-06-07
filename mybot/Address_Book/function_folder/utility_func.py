@@ -35,7 +35,6 @@ def add_user(name: str, phone: str = None) -> str:
 
 
 
-
 def add_phone(name: str, phone: str) -> str:
     record = CONTACTS.get_records(name)  # Отримання запису користувача з вказаним ім'ям
     record.add_phone(phone)  # Додавання нового номеру телефону до запису користувача
@@ -58,6 +57,7 @@ def remove_phone(name, phone):
     return f'For {name} {result}'  # Повернення повідомлення про успішне видалення телефону
 
 
+@input_error
 def add_birthday(name: str, birthday: Birthday) -> str:
     record = CONTACTS.data.get(name)  # Отримання запису користувача з вказаним ім'ям
     if not record:  # Перевірка, чи існує запис користувача
