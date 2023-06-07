@@ -29,7 +29,7 @@ NOTE_HANDLERS = {
 }
 
 
-def main():
+def personal_helper():
     while True:
         print('Options:\n 1. Contact Book \n 2. Note Manager\n 3. File Sorter')
         main_input = input('Hello, choose the option: ')
@@ -146,4 +146,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    personal_helper()
