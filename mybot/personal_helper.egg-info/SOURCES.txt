@@ -1,0 +1,8 @@
+main.py
+setup.py
+personal_helper.egg-info/PKG-INFO
+personal_helper.egg-info/SOURCES.txt
+personal_helper.egg-info/dependency_links.txt
+personal_helper.egg-info/entry_points.txt
+personal_helper.egg-info/requires.txt
+personal_helper.egg-info/top_level.txt

@@ -1,0 +1,2 @@
+[console_scripts]
+personal-helper = main:personal_helper

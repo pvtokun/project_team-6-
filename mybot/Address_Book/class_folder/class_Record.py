@@ -83,7 +83,7 @@ class Record:
             birthday = birthday.replace(year=current_date.year + 1)
         
         if (birthday - current_date).days == days:
-            return f' have birhdai in {days} days'
+            return f' have birthday in {days} days'
 
 
     def add_phone(self, phone: Phone | str):

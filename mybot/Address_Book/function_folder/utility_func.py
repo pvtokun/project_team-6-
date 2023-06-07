@@ -35,6 +35,7 @@ def add_user(name: str, phone: str = None) -> str:
 
 
 
+
 def add_phone(name: str, phone: str) -> str:
     record = CONTACTS.get_records(name)  # Отримання запису користувача з вказаним ім'ям
     record.add_phone(phone)  # Додавання нового номеру телефону до запису користувача
@@ -57,7 +58,6 @@ def remove_phone(name, phone):
     return f'For {name} {result}'  # Повернення повідомлення про успішне видалення телефону
 
 
-@input_error
 def add_birthday(name: str, birthday: Birthday) -> str:
     record = CONTACTS.data.get(name)  # Отримання запису користувача з вказаним ім'ям
     if not record:  # Перевірка, чи існує запис користувача
@@ -80,11 +80,7 @@ def upcoming_birthday(days) -> str:
     record = CONTACTS.data  # Отримання всіх записів користувачів
     result = ''
     for name, record in record.items():
-        upcoming_bd = record.get_upcoming_birthday(int(days))
-        if upcoming_bd is not None:
-            result += f'{name}: {upcoming_bd}' # Отримання наближених днів народження для кожного користувача
-        else:
-            return 'No contacts in this area'   
+        result += f'{name}: {record.get_upcoming_birthday(int(days))}'  # Отримання наближених днів народження для кожного користувача
     return result  # Повернення рядка з наближеними днями народження для кожного користувача
 
 
